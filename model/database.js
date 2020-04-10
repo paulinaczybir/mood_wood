@@ -21,12 +21,12 @@ con.connect(function(err) {
   let sql = [
     "DROP TABLE if exists emergency; ",
     "DROP TABLE if exists log; ",
-    "DROP TABLE if exists moodIcon; ",
+    "DROP TABLE if exists mood; ",
     "DROP TABLE if exists kid; ",
     "DROP TABLE if exists parent; " ,
     "CREATE TABLE emergency (feeling varchar(20) null, because mediumtext null, id int auto_increment, constraint emergency_ID_uindex unique (id)); ",
     "ALTER TABLE emergency add primary key (id) ;",
-    "CREATE TABLE moodIcon (Id int auto_increment primary key, Image blob null) ;",
+    "CREATE TABLE mood (Id int primary key, description text null) ;",
     "CREATE TABLE parent (id int auto_increment, lastname text null, firstname text not null, email text null, username varchar(25) not null, " +
       "constraint parent_Id_uindex unique (id), " +
       "constraint parent_UserName_uindex unique (username)); ",
@@ -34,11 +34,20 @@ con.connect(function(err) {
     "CREATE TABLE kid (Id int auto_increment primary key, Parent_Id int null, FirstName tinytext null, parent_username int null, " +
       "constraint kid_Parent_Id_uindex unique (Parent_Id), " +
       "constraint kid_parent__fk foreign key (Parent_Id) references parent (id) on update cascade on delete cascade); ",
-    "CREATE TABLE log (Id int auto_increment primary key, Kid_Id int not null, MoodIconId int not null, Text text not null, Date date null, " + 
+    "CREATE TABLE log (Id int auto_increment primary key, Kid_Id int not null, MoodId int not null, Text text not null, Date date null, " + 
       "constraint log_Kid_Id_uindex unique (Kid_Id), " +
-      "constraint log_MoodIconId_uindex unique (MoodIconId), " +
+      "constraint log_MoodId_uindex unique (MoodId), " +
       "constraint log_kid__fk foreign key (Kid_Id) references kid (Id) on update cascade on delete cascade, " +
-      "constraint log_moodIcon__fk foreign key (MoodIconId) references moodIcon (Id) on update cascade on delete cascade);"
+      "constraint log_mood__fk foreign key (MoodId) references mood (Id) on update cascade on delete cascade);" +
+    "INSERT INTO mood (id, description) VALUES (1, 'angry');" +
+    "INSERT INTO mood (id, description) VALUES (2, 'confused');" +
+    "INSERT INTO mood (id, description) VALUES (3, 'good');" +
+    "INSERT INTO mood (id, description) VALUES (4, 'happy');" +
+    "INSERT INTO mood (id, description) VALUES (5, 'proud');" +
+    "INSERT INTO mood (id, description) VALUES (6, 'sad');" +
+    "INSERT INTO mood (id, description) VALUES (7, 'silly');" +
+    "INSERT INTO mood (id, description) VALUES (8, 'shy');" +
+    "INSERT INTO mood (id, description) VALUES (9, 'tired');" 
   ];
 
   sql.forEach(e => { 

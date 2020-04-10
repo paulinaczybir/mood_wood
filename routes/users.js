@@ -151,7 +151,7 @@ router.post("/kid", function(req, res, next) {
 // INSERT a new log ----- ok
 router.post("/log", function(req, res, next) {
   db(
-    `INSERT INTO log (kid_id, moodiconid, text, date) VALUES ('${req.body.kid_id}', '${req.body.moodiconid}', '${req.body.text}', '${req.body.date}')`
+    `INSERT INTO log (kid_id, moodid, text, date) VALUES ('${req.body.kid_id}', '${req.body.moodiconid}', '${req.body.text}', '${req.body.date}')`
   )
     .then(results => {
       res.send({ message: "ok" });
@@ -161,9 +161,9 @@ router.post("/log", function(req, res, next) {
 
 
 // INSERT a new moodIcon ----- check
-router.post("/moodIcon", function(req, res, next) {
+router.post("/mood", function(req, res, next) {
   db(
-    `INSERT INTO moodIcon (image) VALUES (null)`
+    //`INSERT INTO mood (description) VALUES (`${req.body.description}`)`
   )
     .then(results => {
       res.send({ message: "ok" });

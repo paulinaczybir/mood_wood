@@ -12,7 +12,7 @@ class Logs extends Component {
         super(props);
         this.state = { 
           logs: [],
-          feeling:"",
+          mood: null,
           because: ""
            }
          }
@@ -72,39 +72,39 @@ class Logs extends Component {
       <p>Open your heart, observe your thoughts and write down your feelings!</p>
         <div>
           <label>
-            <input type="radio" name="angry" value="" />
+            <input onChange={this.inputText} type="radio" name="mood" value="1" />
             <img src="/angry.png" />
           </label>
           <label>
-            <input type="radio" name="confused" value="" />
+            <input onChange={this.inputText} type="radio" name="mood" value="2" />
             <img src="/confused.png" />
           </label>
           <label>
-            <input type="radio" name="good" value="" />
+            <input onChange={this.inputText} type="radio" name="mood" value="3" />
             <img src="/good.png" />
           </label>
           <label>
-            <input type="radio" name="happy" value="" />
+            <input onChange={this.inputText} type="radio" name="mood" value="4" />
             <img src="/happy.png" />
           </label>
           <label>
-            <input type="radio" name="proud" value="" />
+            <input onChange={this.inputText} type="radio" name="mood" value="5" />
             <img src="/proud.png" />
           </label>
           <label>
-            <input type="radio" name="sad" value="" />
+            <input onChange={this.inputText} type="radio" name="mood" value="6" />
             <img src="/sad.png" />
           </label>
           <label>
-            <input type="radio" name="silly" value="" />
+            <input onChange={this.inputText} type="radio" name="mood" value="7" />
             <img src="/silly.png" />
           </label>
           <label>
-            <input type="radio" name="shy" value="" />
+            <input onChange={this.inputText} type="radio" name="mood" value="8" />
             <img src="/shy.png" />
           </label>
           <label>
-            <input type="radio" name="tired" value="" />
+            <input onChange={this.inputText} type="radio" name="mood" value="9" />
             <img src="/tired.png" />
           </label>
           <div className="input-group">
@@ -117,6 +117,14 @@ class Logs extends Component {
             <button type="button" className="btn btn-dark mt-2" onClick={e => this.newLog()} >Submit this Feeling</button>
           </div>
           <br/>
+          <div>
+            <li className="btn float-left pl-0">
+            <Link to="/logs/history" className="btn btn-outline-secondary text-left pl-2"> See all your logs</Link>
+            </li>
+          </div>
+          <div>
+            <img src ="/images/moodmugscrop.png" alt="moodmugs" className="float-right" />
+          </div> */}
         </div>
 
       {/*<div>
