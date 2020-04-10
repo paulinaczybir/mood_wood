@@ -10,8 +10,43 @@ const con = mysql.createConnection({
   host: DB_HOST || "127.0.0.1",
   user: DB_USER || "root",
   password: DB_PASS,
-  database: DB_NAME || "MoodWood",
+  database: DB_NAME || "mood_wood",
   multipleStatements: true
 });
 
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
 
+  let sql = [
+    "DROP TABLE if exists emergency; ",
+    "DROP TABLE if exists log; ",
+    "DROP TABLE if exists moodIcon; ",
+    "DROP TABLE if exists kid; ",
+    "DROP TABLE if exists parent; " ,
+    "CREATE TABLE emergency (feeling varchar(20) null, because mediumtext null, id int auto_increment, constraint emergency_ID_uindex unique (id)); ",
+    "ALTER TABLE emergency add primary key (id) ;",
+    "CREATE TABLE moodIcon (Id int auto_increment primary key, Image blob null) ;",
+    "CREATE TABLE parent (id int auto_increment, lastname text null, firstname text not null, email text null, username varchar(25) not null, " +
+      "constraint parent_Id_uindex unique (id), " +
+      "constraint parent_UserName_uindex unique (username)); ",
+    "ALTER TABLE parent add primary key (id); ",
+    "CREATE TABLE kid (Id int auto_increment primary key, Parent_Id int null, FirstName tinytext null, parent_username int null, " +
+      "constraint kid_Parent_Id_uindex unique (Parent_Id), " +
+      "constraint kid_parent__fk foreign key (Parent_Id) references parent (id) on update cascade on delete cascade); ",
+    "CREATE TABLE log (Id int auto_increment primary key, Kid_Id int not null, MoodIconId int not null, Text text not null, Date date null, " + 
+      "constraint log_Kid_Id_uindex unique (Kid_Id), " +
+      "constraint log_MoodIconId_uindex unique (MoodIconId), " +
+      "constraint log_kid__fk foreign key (Kid_Id) references kid (Id) on update cascade on delete cascade, " +
+      "constraint log_moodIcon__fk foreign key (MoodIconId) references moodIcon (Id) on update cascade on delete cascade);"
+  ];
+
+  sql.forEach(e => { 
+    con.query(e, function(err, result) {
+      if (err) throw err;
+      console.log("Tables creation was successful!"); 
+    });
+  });
+  console.log("Closing...");
+  con.end();
+});
