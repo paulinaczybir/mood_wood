@@ -32,7 +32,6 @@ export default function App() {
               <Link to="/logs" className="nav-link">Create a Log</Link>
             </li>
           </ul>
-          
         </nav>
 
         {/* A <Switch> looks through its children <Route>s and
@@ -61,13 +60,13 @@ function Home() {
 
   return (
     <div>
-  <div id="imgdiv">
-    <img src="https://media.giphy.com/media/BqJc5y7Oq6wPS/giphy.gif" className="p-3 m-3 rounded mx-auto d-block" alt="logo"/>
-    <h1 id="hry" className="display-3 text-center">How are you felling today?</h1>
-    </div>
-    <div>
-    <h1 className="display-4 text-center font-weight-light">All your emotions are welcome here.</h1>
-    </div>
+      <div id="imgdiv">
+        <img src="https://media.giphy.com/media/BqJc5y7Oq6wPS/giphy.gif" className="p-3 m-3 rounded mx-auto d-block" alt="logo"/>
+        <h1 id="hry" className="display-3 text-center">How are you felling today?</h1>
+        </div>
+        <div>
+        <h1 className="display-4 text-center font-weight-light">All your emotions are welcome here.</h1>
+      </div>
     </div>
   );
 }
