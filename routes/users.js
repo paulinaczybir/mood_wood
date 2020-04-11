@@ -4,8 +4,18 @@ const db = require("../model/helper");
 
 //EMERGENCY
 /* GET LOGS  */
-router.get('/emergency', function(req, res, next) {
-  db("SELECT * FROM emergency;")
+router.get('/log', function(req, res, next) {
+  db("SELECT * FROM log;")
+  .then(results => {
+    res.send(results.data);
+  })
+  .catch(err => res.status(500).send(err));
+  
+});
+
+/* GET LOGS joined with MOOD  */
+router.get('/joined', function(req, res, next) {
+  db("SELECT log.Text, mood.emotion FROM log INNER JOIN mood on log.MoodId=mood.Id;")
   .then(results => {
     res.send(results.data);
   })
@@ -23,9 +33,20 @@ router.get("/emergency/:id", function(req, res, next) {
 });
 
 // INSERT a new log
-router.post("/emergency", function(req, res, next) {
+// router.post("/emergency", function(req, res, next) {
+//   db(
+//     `INSERT INTO emergency (feeling, because) VALUES ('${req.body.feeling}', '${req.body.because}')`
+//   )
+//     .then(results => {
+//       res.send({ message: "ok" });
+//     })
+//     .catch(err => res.status(500).send(err));
+// });
+
+//INSERT a new log
+router.post("/log", function(req, res, next) {
   db(
-    `INSERT INTO emergency (feeling, because) VALUES ('${req.body.feeling}', '${req.body.because}')`
+    `INSERT INTO log (MoodId, Text) VALUES ('${req.body.MoodId}', '${req.body.Text}')`
   )
     .then(results => {
       res.send({ message: "ok" });

@@ -15,7 +15,7 @@ class History extends Component {
         }
       
         getLog = () => {
-          fetch(`/users/emergency`)
+          fetch(`/users/joined`)
             .then(response => response.json())
             .then(response => {
               this.setState({  logs : response });
@@ -51,7 +51,7 @@ class History extends Component {
           <li key={index} className="list-group-item">
           <div>
          <div>
-          I'm feeling <strong>{log.feeling + " "}</strong> because {" " + log.because}
+          I'm feeling <strong>{log.emotion + " "}</strong> because {" " + log.Text}
             <button
             className="btn btn-outline-warning btn-sm m-2"
             onClick={() => this.deleteLog(log.id)}>

@@ -12,7 +12,7 @@ class Logs extends Component {
         super(props);
         this.state = { 
           logs: [],
-          mood: null,
+          emotion: null,
           because: ""
            }
          }
@@ -39,14 +39,14 @@ class Logs extends Component {
         };
 
         newLog = () => {
-          fetch("/users/emergency", {
+          fetch("/users/log", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              feeling: this.state.feeling,
-              because: this.state.because,
+              MoodId: parseInt(this.state.emotion, 10),
+              Text: this.state.because,
               
             })
           })
@@ -72,39 +72,39 @@ class Logs extends Component {
       <p>Open your heart, observe your thoughts and write down your feelings!</p>
         <div>
           <label>
-            <input onChange={this.inputText} type="radio" name="mood" value="1" />
+            <input onChange={this.inputText} type="radio" name="emotion" value="1" />
             <img src="/angry.png" />
           </label>
           <label>
-            <input onChange={this.inputText} type="radio" name="mood" value="2" />
+            <input onChange={this.inputText} type="radio" name="emotion" value="2" />
             <img src="/confused.png" />
           </label>
           <label>
-            <input onChange={this.inputText} type="radio" name="mood" value="3" />
+            <input onChange={this.inputText} type="radio" name="emotion" value="3" />
             <img src="/good.png" />
           </label>
           <label>
-            <input onChange={this.inputText} type="radio" name="mood" value="4" />
+            <input onChange={this.inputText} type="radio" name="emotion" value="4" />
             <img src="/happy.png" />
           </label>
           <label>
-            <input onChange={this.inputText} type="radio" name="mood" value="5" />
+            <input onChange={this.inputText} type="radio" name="emotion" value="5" />
             <img src="/proud.png" />
           </label>
           <label>
-            <input onChange={this.inputText} type="radio" name="mood" value="6" />
+            <input onChange={this.inputText} type="radio" name="emotion" value="6" />
             <img src="/sad.png" />
           </label>
           <label>
-            <input onChange={this.inputText} type="radio" name="mood" value="7" />
+            <input onChange={this.inputText} type="radio" name="emotion" value="7" />
             <img src="/silly.png" />
           </label>
           <label>
-            <input onChange={this.inputText} type="radio" name="mood" value="8" />
+            <input onChange={this.inputText} type="radio" name="emotion" value="8" />
             <img src="/shy.png" />
           </label>
           <label>
-            <input onChange={this.inputText} type="radio" name="mood" value="9" />
+            <input onChange={this.inputText} type="radio" name="emotion" value="9" />
             <img src="/tired.png" />
           </label>
           <div className="input-group">
@@ -124,7 +124,7 @@ class Logs extends Component {
           </div>
           <div>
             <img src ="/images/moodmugscrop.png" alt="moodmugs" className="float-right" />
-          </div> */}
+          </div> 
         </div>
 
       {/*<div>
