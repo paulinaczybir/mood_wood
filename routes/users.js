@@ -15,7 +15,7 @@ router.get('/log', function(req, res, next) {
 
 /* GET LOGS joined with MOOD  */
 router.get('/joined', function(req, res, next) {
-  db("SELECT log.Text, mood.emotion FROM log INNER JOIN mood on log.MoodId=mood.Id;")
+  db("SELECT log.Id, log.Text, mood.emotion FROM log INNER JOIN mood on log.MoodId=mood.Id;")
   .then(results => {
     res.send(results.data);
   })
@@ -75,8 +75,8 @@ router.get("/parent/:id", function(req, res, next) {
 });
 
 // DELETE a log from the DB -- 
-router.delete("/emergency/:id", function(req, res, next) {
-  db(`DELETE FROM emergency WHERE id=${req.params.id};`)
+router.delete("/joined/:id", function(req, res, next) {
+  db(`DELETE FROM log WHERE id=${req.params.id};`)
     .then(results => {
       const payload = { message: "ok" };
       res.send(payload);

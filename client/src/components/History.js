@@ -23,7 +23,7 @@ class History extends Component {
         };
 
         deleteLog = i => {
-            fetch(`/users/emergency/${i}`, {
+            fetch(`/users/joined/${i}`, {
               method: "DELETE"
             })
               .then(res => res.json())
@@ -54,7 +54,7 @@ class History extends Component {
           I'm feeling <strong>{log.emotion + " "}</strong> because {" " + log.Text}
             <button
             className="btn btn-outline-warning btn-sm m-2"
-            onClick={() => this.deleteLog(log.id)}>
+            onClick={() => this.deleteLog(log.Id)}>
             Delete
             </button>
          </div>
