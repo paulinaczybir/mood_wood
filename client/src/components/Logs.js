@@ -21,7 +21,7 @@ class Logs extends Component {
         }
       
         getLog = () => {
-          fetch(`/users/emergency`)
+          fetch(`/users/log`)
             .then(response => response.json())
             .then(response => {
               this.setState({  logs : response });

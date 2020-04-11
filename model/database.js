@@ -19,13 +19,10 @@ con.connect(function(err) {
   console.log("Connected!");
 
   let sql = [
-    "DROP TABLE if exists emergency; ",
     "DROP TABLE if exists log; ",
     "DROP TABLE if exists mood; ",
     "DROP TABLE if exists kid; ",
     "DROP TABLE if exists parent; " ,
-    "CREATE TABLE emergency (feeling varchar(20) null, because mediumtext null, id int auto_increment, constraint emergency_ID_uindex unique (id)); ",
-    "ALTER TABLE emergency add primary key (id) ;",
     "CREATE TABLE mood (Id int primary key, emotion text null) ;",
     "CREATE TABLE parent (id int auto_increment, lastname text null, firstname text not null, email text null, username varchar(25) not null, " +
       "constraint parent_Id_uindex unique (id), " +

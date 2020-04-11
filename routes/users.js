@@ -24,24 +24,14 @@ router.get('/joined', function(req, res, next) {
 });
 
 // GET LOGS BY ID
-router.get("/emergency/:id", function(req, res, next) {
-  db(`SELECT * FROM emergency WHERE id=${req.params.id};`)
+router.get("/log/:id", function(req, res, next) {
+  db(`SELECT * FROM log WHERE id=${req.params.id};`)
     .then(results => {
       res.send(results.data);
     })
     .catch(err => res.status(500).send(err));
 });
 
-// INSERT a new log
-// router.post("/emergency", function(req, res, next) {
-//   db(
-//     `INSERT INTO emergency (feeling, because) VALUES ('${req.body.feeling}', '${req.body.because}')`
-//   )
-//     .then(results => {
-//       res.send({ message: "ok" });
-//     })
-//     .catch(err => res.status(500).send(err));
-// });
 
 //INSERT a new log
 router.post("/log", function(req, res, next) {
