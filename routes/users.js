@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 const db = require("../model/helper");
 
-//EMERGENCY
 /* GET LOGS  */
 router.get('/log', function(req, res, next) {
   db("SELECT * FROM log;")
@@ -45,8 +44,8 @@ router.post("/log", function(req, res, next) {
 });
 
 // DELETE PARENT from the DB -- 
-router.delete("/parent/:id", function(req, res, next) {
-  db(`DELETE FROM parent WHERE id=${req.params.id};`)
+router.delete("/parent/:username", function(req, res, next) {
+  db(`DELETE FROM parent WHERE username='${req.params.username}';`)
     .then(results => {
       const payload = { message: "ok" };
       res.send(payload);
@@ -145,7 +144,11 @@ router.post("/parent", function(req, res, next) {
   .then(results => {
     res.send({ message: "ok" });
   })
-  .catch(err => res.status(500).send(err)); 
+  .catch(err => {
+    res.status(500).send(err);
+    console.log("error message");
+    console.log(JSON.stringify(err));
+  });
 });
 
 // INSERT a new kid ----- ok
@@ -171,6 +174,7 @@ router.post("/log", function(req, res, next) {
 });
 
 
+/*
 // INSERT a new moodIcon ----- check
 router.post("/mood", function(req, res, next) {
   db(
@@ -181,7 +185,7 @@ router.post("/mood", function(req, res, next) {
     })
     .catch(err => res.status(500).send(err));
 }); 
-
+*/
 
 
 // DELETE a kid from the DB -- 

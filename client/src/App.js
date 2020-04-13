@@ -2,6 +2,7 @@ import React from "react";
 import Register from "./components/Register";
 import History from "./components/History";
 import Logs from "./components/Logs";
+import ParentLogin from "./components/ParentLogin";
 import "./App.css";
 
 import {
@@ -29,6 +30,9 @@ export default function App() {
               <Link to="/register" className="nav-link">Sign up!</Link>
             </li>
             <li className="nav-item">
+              <Link to="/parentlogin" className="nav-link">Sign in!</Link>
+            </li>
+            <li className="nav-item">
               <Link to="/logs" className="nav-link">Create a Log</Link>
             </li>
           </ul>
@@ -39,6 +43,9 @@ export default function App() {
         <Switch>
           <Route path="/register" component={Register}>
             <Register />
+          </Route>
+          <Route path="/parentlogin" component={ParentLogin}>
+            <ParentLogin />
           </Route>
            <Route path="/logs/history" component={History}>
             <History  />
