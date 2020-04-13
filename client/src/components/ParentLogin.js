@@ -6,10 +6,19 @@ class ParentLogin extends Component {
     super(props)
     this.state = {
       email: "",
-      password: null
+      password: ""
     }
   }
 
+    inputText = event => {
+      const value = event.target.value;
+      const name = event.target.name;
+
+      event.preventDefault();
+      this.setState({
+        [name]: value
+      });
+    };
 
     logIn = () => {}
 
@@ -21,12 +30,12 @@ class ParentLogin extends Component {
 
                 <div className="form-group">
                     <label>Email address</label>
-                    <input type="email" className="form-control" placeholder="Enter email" />
+                    <input onChange={this.inputText} name="email" value={this.state.email} type="email" className="form-control" placeholder="Enter email" />
                 </div>
 
                 <div className="form-group">
                     <label>Password</label>
-                    <input type="password" className="form-control" placeholder="Enter password" />
+                    <input onChange={this.inputText} name="password" value={this.state.password} type="password" className="form-control" placeholder="Enter password" />
                 </div>
                 <button type="button" className="btn btn-dark" onClick={e => this.logIn()}>Log in</button>
 

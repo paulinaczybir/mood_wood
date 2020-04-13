@@ -12,9 +12,9 @@ class Register extends Component {
           lastname: "",
           email: "",
           username: "",
-          email2: "",
           error: false,
-          password: ""
+          password: "",
+          removeUsername: ""
           //id:"",
            }
          }
@@ -52,7 +52,6 @@ class Register extends Component {
               email: this.state.email,
               username: this.state.username,
               dateofbirth : this.state.dateofbirth,
-              email2: this.state.email2,
               password: this.state.password
               //id: this.state.id
             })
@@ -74,7 +73,6 @@ class Register extends Component {
               lastname: "",
               email: "",
               username: "",
-              email2: "",
               password: ""
             })
         };
@@ -93,6 +91,9 @@ class Register extends Component {
             .catch(error => {
               console.log(error);
             });
+            this.setState({
+              removeUsername: ""
+            })
         };
         
 
@@ -107,28 +108,28 @@ render(){
         <div className="input-group-prepend">
           <span className="input-group-text" id="">First and last name</span>
         </div>
-        <input type="text" className="form-control" onChange={this.inputText} name="firstname"/>
-        <input type="text" className="form-control" onChange={this.inputText} name="lastname"/>
+        <input type="text" className="form-control" onChange={this.inputText} name="firstname" value={this.state.firstname}/>
+        <input type="text" className="form-control" onChange={this.inputText} name="lastname" value={this.state.lastname}/>
       </div>
       
       <div className="input-group mb-3">
         <div className="input-group-prepend">
           <span className="input-group-text" id="basic-addon1">your@email.com</span>
         </div>
-        <input type="text" className="form-control"  aria-label="email" aria-describedby="basic-addon1" onChange={this.inputText} name="email"/>
+        <input type="text" className="form-control"  aria-label="email" aria-describedby="basic-addon1" onChange={this.inputText} name="email" value={this.state.email}/>
       </div>
       
       <div className="input-group mb-3">
         <div className="input-group-prepend">
           <span className="input-group-text" id="inputGroup-sizing-default">UserName</span>
         </div>
-        <input type="text" className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" onChange={this.inputText} name="username"/>
+        <input type="text" className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" onChange={this.inputText} name="username" value={this.state.username}/>
       </div>
       <div className="input-group mb-3">
         <div className="input-group-prepend">
           <span className="input-group-text" id="inputGroup-sizing-default">Password</span>
         </div>
-        <input type="password" className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" onChange={this.inputText} name="password"/>
+        <input type="password" className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" onChange={this.inputText} name="password" value={this.state.password}/>
       </div>
       
       {this.state.error && <div>User name already exists!</div>}
@@ -146,16 +147,7 @@ render(){
       <div className="form-row align-items-center">
         <div className="col-sm-3 my-1">
           <label className="sr-only" htmlFor="inlineFormInputName">Name</label>
-          <input type="text" className="form-control" id="inlineFormInputName" name="username" onChange={this.inputText} placeholder="Your username"/>
-        </div>
-        <div className="col-sm-3 my-1">
-          <label className="sr-only" htmlFor="inlineFormInputGroupUsername">Your account ID</label>
-          <div className="input-group">
-            <div className="input-group-prepend">
-              <div className="input-group-text">@</div>
-            </div>
-            <input type="text" className="form-control" id="inlineFormInputGroupUsername" name="email2" onChange={this.inputText} placeholder="E-mail"/>
-          </div>
+          <input type="text" className="form-control" id="inlineFormInputName" name="removeUsername" value={this.state.removeUsername} onChange={this.inputText} placeholder="Your username"/>
         </div>
         <div className="col-auto my-1">
           <div className="form-check">
@@ -164,7 +156,7 @@ render(){
         </div>
       </form>
      <div>
-        <button type="submit" className="btn btn-outline-danger mt-2" onClick={e =>this.deleteUser(this.state.username)}>Delete account</button>
+        <button type="submit" className="btn btn-outline-danger mt-2" onClick={e =>this.deleteUser(this.state.removeUsername)}>Delete account</button>
         </div>
       </div>
       <br/>
