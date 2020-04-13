@@ -13,7 +13,8 @@ class Register extends Component {
           email: "",
           username: "",
           email2: "",
-          error: false
+          error: false,
+          password: ""
           //id:"",
            }
          }
@@ -52,6 +53,7 @@ class Register extends Component {
               username: this.state.username,
               dateofbirth : this.state.dateofbirth,
               email2: this.state.email2,
+              password: this.state.password
               //id: this.state.id
             })
           })
@@ -67,6 +69,14 @@ class Register extends Component {
             .catch(error => {
               console.log(error);
             }); 
+            this.setState({
+              firstname:"",
+              lastname: "",
+              email: "",
+              username: "",
+              email2: "",
+              password: ""
+            })
         };
       
         deleteUser = username => {
@@ -113,6 +123,12 @@ render(){
           <span className="input-group-text" id="inputGroup-sizing-default">UserName</span>
         </div>
         <input type="text" className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" onChange={this.inputText} name="username"/>
+      </div>
+      <div className="input-group mb-3">
+        <div className="input-group-prepend">
+          <span className="input-group-text" id="inputGroup-sizing-default">Password</span>
+        </div>
+        <input type="password" className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" onChange={this.inputText} name="password"/>
       </div>
       
       {this.state.error && <div>User name already exists!</div>}

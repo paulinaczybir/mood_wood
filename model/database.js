@@ -24,7 +24,7 @@ con.connect(function(err) {
     "DROP TABLE if exists kid; ",
     "DROP TABLE if exists parent; " ,
     "CREATE TABLE mood (Id int primary key, emotion text null) ;",
-    "CREATE TABLE parent (id int auto_increment, lastname text null, firstname text not null, email text null, username varchar(25) not null, " +
+    "CREATE TABLE parent (id int auto_increment, lastname text null, firstname text not null, email text null, username varchar(25) not null, password varchar(25) not null, " +
       "constraint parent_Id_uindex unique (id), " +
       "constraint parent_UserName_uindex unique (username)); ",
     "ALTER TABLE parent add primary key (id); ",

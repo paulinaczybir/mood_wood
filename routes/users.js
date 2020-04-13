@@ -138,16 +138,14 @@ router.get("/log/:id", function(req, res, next) {
 
 // INSERT NEW PARENT DATA -- ok
 router.post("/parent", function(req, res, next) {
-  db(`INSERT INTO parent (firstname, lastname, email, username) 
-      VALUES ('${req.body.firstname}','${req.body.lastname}', '${req.body.email}', '${req.body.username}')`
+  db(`INSERT INTO parent (firstname, lastname, email, username, password) 
+      VALUES ('${req.body.firstname}','${req.body.lastname}', '${req.body.email}', '${req.body.username}', '${req.body.password}')`
    )
   .then(results => {
     res.send({ message: "ok" });
   })
   .catch(err => {
     res.status(500).send(err);
-    console.log("error message");
-    console.log(JSON.stringify(err));
   });
 });
 
