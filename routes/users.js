@@ -53,6 +53,15 @@ router.delete("/parent/:username", function(req, res, next) {
     .catch(err => res.status(500).send(err));
 });
 
+// GET parents BY username and password
+router.get("/parent/:username/:password", function(req, res, next) {
+  db(`SELECT * FROM parent WHERE username='${req.params.username}' AND password='${req.params.password}';`)
+    .then(results => {
+      console.log(results);
+      res.send(results.data);
+    })
+    .catch(err => res.status(500).send(err));
+});
 
 // GET parents BY ID
 router.get("/parent/:id", function(req, res, next) {

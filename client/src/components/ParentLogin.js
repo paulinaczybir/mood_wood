@@ -5,8 +5,9 @@ class ParentLogin extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      email: "",
-      password: ""
+      username: "",
+      password: "",
+      testData: []
     }
   }
 
@@ -20,7 +21,17 @@ class ParentLogin extends Component {
       });
     };
 
-    logIn = () => {}
+    logIn = (username, password) => {
+      fetch(`/users/parent/${username}/${password}`)
+      .then(response => {
+        console.log(response);
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+        this.setState({ testData : data});
+      });
+    };
 
     render() {
         return (
@@ -29,15 +40,16 @@ class ParentLogin extends Component {
                 <h3>Sign In</h3>
 
                 <div className="form-group">
-                    <label>Email address</label>
-                    <input onChange={this.inputText} name="email" value={this.state.email} type="email" className="form-control" placeholder="Enter email" />
+                    <label>Username</label>
+                    <input onChange={this.inputText} name="username" value={this.state.username} type="email" className="form-control" placeholder="Enter username" />
                 </div>
 
                 <div className="form-group">
                     <label>Password</label>
                     <input onChange={this.inputText} name="password" value={this.state.password} type="password" className="form-control" placeholder="Enter password" />
                 </div>
-                <button type="button" className="btn btn-dark" onClick={e => this.logIn()}>Log in</button>
+                <button type="button" className="btn btn-dark" onClick={e => this.logIn(this.state.username, this.state.password)}>Log in</button>
+
 
                 {/* <div className="form-group">
                     <div className="custom-control custom-checkbox">
