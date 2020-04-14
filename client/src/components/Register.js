@@ -19,7 +19,7 @@ class Register extends Component {
            }
          }
 
-         *componentDidMount() {
+         componentDidMount() {
           this.getLog();
         }
       
@@ -133,7 +133,7 @@ render(){
         <input type="password" className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" onChange={this.inputText} name="password" value={this.state.password}/>
       </div>
       
-      {this.state.error && <div>User name already exists!</div>}
+      {this.state.error && <div className="text-danger">User name already exists!</div>}
 
       <div>
         <button type="button" className="btn btn-dark" onClick={e => this.newUser()}>Submit</button>

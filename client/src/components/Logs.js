@@ -70,8 +70,8 @@ class Logs extends Component {
     return (
     <div className="container">
       <h2>Your Log</h2>
-      <p>Open your heart, observe your thoughts and write down your feelings!</p>
-        <div>
+      <p className="mb-6">Open your heart, observe your thoughts and write down your feelings!</p>
+        <div className="row col-10">
           <label>
             <input onChange={this.inputText} type="radio" name="emotion" value="1" />
             <img src="/angry.png" />
@@ -108,63 +108,24 @@ class Logs extends Component {
             <input onChange={this.inputText} type="radio" name="emotion" value="9" />
             <img src="/tired.png" />
           </label>
+
           <div className="input-group">
             <div className="input-group-prepend">
               <span className="input-group-text">Because</span>
             </div>
             <textarea className="form-control" aria-label="With textarea" onChange={this.inputText} name="because"></textarea>
           </div>
+
           <div>
-            <button type="button" className="btn btn-dark mt-2" onClick={e => this.newLog()} >Submit this Feeling</button>
+            <button type="button" className="btn btn-dark mr-4 mt-4" onClick={e => this.newLog()} >Submit this Feeling</button>
           </div>
           <br/>
           <div>
-            <li className="btn float-left pl-0">
+            <li className="btn float-left pl-0 ml-4 mt-3">
             <Link to="/logs/history" className="btn btn-outline-secondary text-left pl-2"> See all your logs</Link>
             </li>
           </div>
-          <div>
-            <img src ="/images/moodmugscrop.png" alt="moodmugs" className="float-right" />
-          </div> 
         </div>
-
-      {/*<div>
-          <div className="input-group mb-3">
-          <div className="input-group-prepend">
-          <label className="input-group-text" for="inputGroupSelect01">I'm feeling...</label>
-        </div>
-        <select className="custom-select" id="inputSelect" onChange={this.inputText} name="feeling">
-        <option selected>Choose...</option>
-        <option value="Angry">Angry</option>
-        <option value="Confused">Confused</option>
-        <option value="Good">Good </option>
-        <option value="Happy">Happy </option>
-        <option value="Proud">Proud  </option>
-        <option value="Sad">Sad </option>
-        <option value="Shy">Shy </option>
-        <option value="Tired">Tired </option>
-        </select>
-        </div>
-        <div className="input-group">
-        <div className="input-group-prepend">
-          <span className="input-group-text">Because</span>
-        </div>
-          <textarea className="form-control" aria-label="With textarea" onChange={this.inputText} name="because"></textarea>
-        </div>
-        </div>
-        <div>
-          <button type="button" className="btn btn-dark mt-2" onClick={e => this.newLog()} >Submit this Feeling</button>
-        </div>
-        <br/>
-        
-        <div>
-            <li className="btn float-left pl-0">
-            <Link to="/logs/history" className="btn btn-outline-secondary text-left pl-2"> See all your logs</Link>
-            </li>
-        </div>
-        <div>
-          <img src ="/images/moodmugscrop.png" alt="moodmugs" className="float-right" />
-        </div> */}
     </div>
     );
   }

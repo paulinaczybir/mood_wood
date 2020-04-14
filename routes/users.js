@@ -3,16 +3,6 @@ var router = express.Router();
 const db = require("../model/helper");
 
 
-/* GET LOGS joined with MOOD  
-router.get('/joined', function(req, res, next) {
-  db("SELECT log.Id, log.Text, mood.emotion FROM log INNER JOIN mood on log.MoodId=mood.Id;")
-  .then(results => {
-    res.send(results.data);
-  })
-  .catch(err => res.status(500).send(err));
-}); */
-
-
 /* GET LOGS joined with MOOD  */
 router.get('/joined/:Parent_Id', function(req, res, next) {
   db(`SELECT log.Id, log.Text, mood.emotion FROM log INNER JOIN mood on log.MoodId=mood.Id WHERE Parent_Id=${req.params.Parent_Id};`)
@@ -86,22 +76,10 @@ router.get("/parent/:username/:password", function(req, res, next) {
     .catch(err => res.status(500).send(err));
 });
 
-/*// GET parents BY ID
-router.get("/parent/:id", function(req, res, next) {
-  db(`SELECT * FROM parent WHERE id=${req.params.id};`)
-    .then(results => {
-      res.send(results.data);
-    })
-    .catch(err => res.status(500).send(err));
-}); */
 
+// Routes that may be useful for future features extention of the project, but are not used currently
 
-//
-///////
-////////////
-///////////////////
-///////////////////////////
-
+/*
 // GET LOGS BY ID
 router.get("/log/:id", function(req, res, next) {
   db(`SELECT * FROM log WHERE id=${req.params.id};`)
@@ -111,7 +89,7 @@ router.get("/log/:id", function(req, res, next) {
     .catch(err => res.status(500).send(err));
 });
 
-/* GET LOGS  */
+// GET LOGS  
 router.get('/log', function(req, res, next) {
   db("SELECT * FROM log;")
   .then(results => {
@@ -121,7 +99,7 @@ router.get('/log', function(req, res, next) {
   
 });
 
-/* GET users KIDS listing. -- ok */
+// GET users KIDS listing. -- ok 
 router.get('/kid', function(req, res, next) {
   db("SELECT * FROM kid;")
   .then(results => {
@@ -140,15 +118,15 @@ router.get("/kid/:id", function(req, res, next) {
     .catch(err => res.status(500).send(err));
 });
 
-
-// GET one Parent -- ok
+// GET parents BY ID
 router.get("/parent/:id", function(req, res, next) {
   db(`SELECT * FROM parent WHERE id=${req.params.id};`)
     .then(results => {
       res.send(results.data);
     })
     .catch(err => res.status(500).send(err));
-});
+}); 
+
 
 // GET Logs -- ok
 router.get("/log", function(req, res, next) {
@@ -179,19 +157,6 @@ router.post("/kid", function(req, res, next) {
     .catch(err => res.status(500).send(err));
 });
 
-/*
-// INSERT a new moodIcon ----- check
-router.post("/mood", function(req, res, next) {
-  db(
-    //`INSERT INTO mood (description) VALUES (`${req.body.description}`)`
-  )
-    .then(results => {
-      res.send({ message: "ok" });
-    })
-    .catch(err => res.status(500).send(err));
-}); 
-*/
-
 
 // DELETE a kid from the DB -- 
 router.delete("/kid/:id", function(req, res, next) {
@@ -202,6 +167,7 @@ router.delete("/kid/:id", function(req, res, next) {
     })
     .catch(err => res.status(500).send(err));
 });
+*/
 
 
 

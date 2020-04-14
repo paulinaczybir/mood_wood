@@ -7,7 +7,7 @@ class ParentLogin extends Component {
     this.state = {
       username: "",
       password: "",
-      testData: []
+      error: false
     }
   }
 
@@ -30,40 +30,37 @@ class ParentLogin extends Component {
       .then(data => {
         console.log(data);
         this.props.getUserId(data[0].id)
-      });
+      })
+      .catch(error => {
+        console.log(error);
+        this.setState({error: true});
+      }); 
     };
 
 
     render() {
         return (
           <div>
-            <form>
+            <div className="container">
                 <h3>Sign In</h3>
 
-                <div className="form-group">
-                    <label>Username</label>
+                <div className="input-group mb-3 input-group-prepend">
+                    <span className="input-group-text">Username</span>
                     <input onChange={this.inputText} name="username" value={this.state.username} type="email" className="form-control" placeholder="Enter username" />
                 </div>
 
-                <div className="form-group">
-                    <label>Password</label>
+                <div className="input-group mb-3 input-group-prepend">
+                    <span className="input-group-text">Password</span>
                     <input onChange={this.inputText} name="password" value={this.state.password} type="password" className="form-control" placeholder="Enter password" />
                 </div>
                 <button type="button" className="btn btn-dark" onClick={e => this.logIn(this.state.username, this.state.password)}>Log in</button>
 
+                <div>
+                <img src ="/images/moodmugscrop.png" alt="moodmugs" className="float-right" />
+               </div> 
+            </div>
 
-                {/* <div className="form-group">
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="customCheck1" />
-                        <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
-                    </div>
-                   </div> */}
-
-                {/*<button type="submit" className="btn btn-primary btn-block">Submit</button>
-                <p className="forgot-password text-right">
-                    Forgot <a href="#">password?</a>
-                  </p> */}
-            </form>
+            {this.state.error && <div className="text-danger">User does not exist!</div>}
           </div>
         );
     }
