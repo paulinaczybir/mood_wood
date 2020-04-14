@@ -16,7 +16,8 @@ class Logs extends Component {
           because: ""
            }
          }
-         componentDidMount() {
+
+         /*componentDidMount() {
           this.getLog();
         }
       
@@ -26,7 +27,7 @@ class Logs extends Component {
             .then(response => {
               this.setState({  logs : response });
             });
-        };
+        }; */
       
         inputText = event => {
           const value = event.target.value;
@@ -47,7 +48,7 @@ class Logs extends Component {
             body: JSON.stringify({
               MoodId: parseInt(this.state.emotion, 10),
               Text: this.state.because,
-              
+              Parent_Id: this.props.currentUserId
             })
           })
             .then(res => res.json())
@@ -55,7 +56,7 @@ class Logs extends Component {
               if (response.message === "Error") {
                 return console.error("error");
               }
-              this.getLog();
+              //this.getLog();
             })
             .catch(error => {
               console.log(error);

@@ -30,8 +30,9 @@ con.connect(function(err) {
     "ALTER TABLE parent add primary key (id); ",
     "CREATE TABLE kid (Id int auto_increment primary key, Parent_Id int null, FirstName tinytext null, parent_username int null, " +
       "constraint kid_Parent_Id_uindex unique (Parent_Id), " +
-      "constraint kid_parent__fk foreign key (Parent_Id) references parent (id) on update cascade on delete cascade); ",
-    "CREATE TABLE log (Id int auto_increment primary key, Kid_Id int null, MoodId int null, Text text null, Date date null, " + 
+      "constraint kid_parent__fk foreign key (Parent_Id) references parent (id) on update cascade on delete cascade); " +
+    "CREATE TABLE log (Id int auto_increment primary key, Kid_Id int null, Parent_Id int not null, MoodId int null, Text text null, Date date null, " + 
+      "constraint log_parent__fk foreign key (Parent_Id) references parent (id) on update cascade on delete cascade, " +
       "constraint log_kid__fk foreign key (Kid_Id) references kid (Id) on update cascade on delete cascade, " +
       "constraint log_mood__fk foreign key (MoodId) references mood (Id) on update cascade on delete cascade);" +
     "INSERT INTO mood (id, emotion) VALUES (1, 'angry');" +

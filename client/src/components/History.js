@@ -15,7 +15,7 @@ class History extends Component {
         }
       
         getLog = () => {
-          fetch(`/users/joined`)
+          fetch(`/users/joined/${this.props.currentUserId}`)
             .then(response => response.json())
             .then(response => {
               this.setState({  logs : response });

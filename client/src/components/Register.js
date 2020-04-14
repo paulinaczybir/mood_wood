@@ -18,7 +18,8 @@ class Register extends Component {
           //id:"",
            }
          }
-         componentDidMount() {
+
+         *componentDidMount() {
           this.getLog();
         }
       
@@ -28,7 +29,7 @@ class Register extends Component {
             .then(response => {
               this.setState({  parents : response });
             });
-        };
+        }; 
       
         inputText = event => {
           const value = event.target.value;
