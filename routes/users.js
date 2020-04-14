@@ -14,8 +14,9 @@ router.get('/joined/:Parent_Id', function(req, res, next) {
 
 //INSERT a new log with parent id
 router.post("/log", function(req, res, next) {
+  const regex = /'/gi;
   db(
-    `INSERT INTO log (MoodId, Text, Parent_Id) VALUES ('${req.body.MoodId}', '${req.body.Text}', ${req.body.Parent_Id} )`
+    `INSERT INTO log (MoodId, Text, Parent_Id) VALUES ('${req.body.MoodId}', '${req.body.Text.replace(regex, "''")}', ${req.body.Parent_Id} )`
   )
     .then(results => {
       res.send({ message: "ok" });
