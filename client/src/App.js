@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import Register from "./components/Register";
 import History from "./components/History";
 import Logs from "./components/Logs";
@@ -13,8 +13,23 @@ import {
 } from "react-router-dom";
 
 
-export default function App() {
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentUserId: null
+    }
+  }
+
+  getUserId = id => {
+    this.setState({
+      currentUserId: id
+    })
+  }
+
+  render() {
   return (
+    <div>
     <Router>
       <div>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -45,13 +60,13 @@ export default function App() {
             <Register />
           </Route>
           <Route path="/parentlogin" component={ParentLogin}>
-            <ParentLogin />
+            <ParentLogin getUserId={this.getUserId} />
           </Route>
            <Route path="/logs/history" component={History}>
-            <History  />
+            <History currentUserId={this.state.currentUserId} />
           </Route>
           <Route path="/logs" component={Logs}>
-            <Logs  />
+            <Logs currentUserId={this.state.currentUserId} />
           </Route>
           <Route path="/" component={Home}>
             <Home />
@@ -59,8 +74,9 @@ export default function App() {
         </Switch>
       </div>
     </Router>
+    </div>
   );
-
+ };
 };
 
 function Home() {

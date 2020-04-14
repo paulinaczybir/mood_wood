@@ -29,9 +29,10 @@ class ParentLogin extends Component {
       })
       .then(data => {
         console.log(data);
-        this.setState({ testData : data});
+        this.props.getUserId(data[0].id)
       });
     };
+
 
     render() {
         return (
